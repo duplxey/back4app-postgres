@@ -21,13 +21,11 @@ export default function Page() {
     item.set("description", description);
     item.set("price", parseFloat(price));
 
-    item.save().then(
-      (item) => {
-        console.log('Item created successfully with objectId: ', item.id);
+    item.save().then((item) => {
+        console.log("Item created successfully with objectId: ", item.id);
         router.push("/");
-      },
-      (error) => {
-        console.error('Error while creating Item: ', error);
+      }, (error) => {
+        console.error("Error while creating Item: ", error);
       }
     );
   }

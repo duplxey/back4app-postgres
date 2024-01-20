@@ -22,22 +22,24 @@ export default function Page() {
     query.find().then((fetchedItems) => {
       const items = fetchedItems.map(item => ({
         objectId: item.id,
-        name: item.get('name'),
-        description: item.get('description'),
-        price: item.get('price'),
-        createdAt: item.get('createdAt'),
+        name: item.get("name"),
+        description: item.get("description"),
+        price: item.get("price"),
+        createdAt: item.get("createdAt"),
       }));
       setItems(items);
+      console.log("Items fetched successfully.");
     }).catch((error) => {
-      console.error('Error while fetching items:', error);
+      console.error("Error while fetching items:", error);
     });
   }
 
   const fetchStatistics = () => {
-    parse.Cloud.run('getStatistics').then((statistics) => {
+    parse.Cloud.run("getStatistics").then((statistics) => {
       setStatistics(statistics);
+      console.log("Statistics fetched successfully.");
     }).catch((error) => {
-      console.error('Error while fetching statistics:', error);
+      console.error("Error while fetching statistics:", error);
     });
   }
 

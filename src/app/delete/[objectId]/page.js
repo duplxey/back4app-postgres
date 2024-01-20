@@ -19,10 +19,10 @@ export default function Page() {
     query.get(objectId).then((item) => {
       return item.destroy();
     }).then((response) => {
-      console.log('Item deleted successfully');
+      console.log("Item deleted successfully");
       router.push("/");
     }).catch((error) => {
-      console.error('Error while deleting Item: ', error);
+      console.error("Error while deleting Item: ", error);
     });
   }
 
