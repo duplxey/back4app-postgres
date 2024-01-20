@@ -1,34 +1,50 @@
 "use client";
 
-import {useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {useRouter} from "next/navigation";
+import ParseContext from "@/app/context/parseContext";
 
 export default function Page() {
 
   const router = useRouter();
+  const parse = useContext(ParseContext);
 
-  const [items, setItems] = useState([
-    {
-      objectId: "1",
-      name: "Microsoft Surface Pro",
-      description: "White",
-      price: 12,
-      createdAt: "2021-01-01",
-    },
-    {
-      objectId: "2",
-      name: "Microsoft Surface Pro 2",
-      description: "Black",
-      price: 12,
-      createdAt: "2021-01-01",
-    }
-  ]);
+  const [items, setItems] = useState([]);
   const [statistics, setStatistics] = useState({
-    totalItems: 12,
-    totalSpent: 12,
-    totalBudget: 50,
-    spentPercentage: 45,
+    totalItems: 0,
+    totalSpent: 0,
+    totalBudget: 0,
+    spentPercentage: 0,
   });
+
+  const fetchItems = () => {
+    const query = new parse.Query("Item");
+    query.find().then((fetchedItems) => {
+      const items = fetchedItems.map(item => ({
+        objectId: item.id,
+        name: item.get('name'),
+        description: item.get('description'),
+        price: item.get('price'),
+        createdAt: item.get('createdAt'),
+      }));
+      setItems(items);
+    }).catch((error) => {
+      console.error('Error while fetching items:', error);
+    });
+  }
+
+  const fetchStatistics = () => {
+    parse.Cloud.run('getStatistics').then((statistics) => {
+      setStatistics(statistics);
+    }).catch((error) => {
+      console.error('Error while fetching statistics:', error);
+    });
+  }
+
+  useEffect(() => {
+    fetchItems();
+    fetchStatistics();
+  }, []);
 
   return (
     <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
@@ -75,7 +91,7 @@ export default function Page() {
                       ${item.price}
                     </td>
                     <td className="px-6 py-4">
-                      {item.createdAt}
+                      {item.createdAt.toString()}
                     </td>
                     <td className="px-6 py-4 space-x-2">
                       <button

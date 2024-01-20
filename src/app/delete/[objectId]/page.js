@@ -1,16 +1,29 @@
 "use client";
 
 import {useParams, useRouter} from "next/navigation";
+import ParseContext from "@/app/context/parseContext";
+import {useContext} from "react";
 
 export default function Page() {
 
   const router = useRouter();
+  const parse = useContext(ParseContext);
 
   const params = useParams();
   const objectId = params.objectId;
 
   const onDeleteClick = () => {
-    console.log("bloop");
+    const Item = parse.Object.extend("Item");
+    const query = new parse.Query(Item);
+
+    query.get(objectId).then((item) => {
+      return item.destroy();
+    }).then((response) => {
+      console.log('Item deleted successfully');
+      router.push("/");
+    }).catch((error) => {
+      console.error('Error while deleting Item: ', error);
+    });
   }
 
   const onCancelClick = () => {

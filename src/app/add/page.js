@@ -1,18 +1,35 @@
 "use client";
 
-import {useState} from "react";
+import {useContext, useState} from "react";
 import {useRouter} from "next/navigation";
+import ParseContext from "@/app/context/parseContext";
 
 export default function Page() {
 
   const router = useRouter();
+  const parse = useContext(ParseContext);
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
 
   const onAddClick = () => {
-    console.log("adding item...");
+    const Item = parse.Object.extend("Item");
+    const item = new Item();
+
+    item.set("name", name);
+    item.set("description", description);
+    item.set("price", parseFloat(price));
+
+    item.save().then(
+      (item) => {
+        console.log('Item created successfully with objectId: ', item.id);
+        router.push("/");
+      },
+      (error) => {
+        console.error('Error while creating Item: ', error);
+      }
+    );
   }
 
   const onCancelClick = () => {
