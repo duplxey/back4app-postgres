@@ -1,13 +1,11 @@
 "use client";
 
-import {useContext, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {useRouter} from "next/navigation";
-import ParseContext from "@/app/context/parseContext";
 
 export default function Page() {
 
   const router = useRouter();
-  const parse = useContext(ParseContext);
 
   const [expenses, setExpenses] = useState([]);
   const [statistics, setStatistics] = useState({
@@ -18,29 +16,11 @@ export default function Page() {
   });
 
   const fetchExpenses = () => {
-    const query = new parse.Query("Expense");
-    query.find().then((fetchedExpenses) => {
-      const expenses = fetchedExpenses.map(expense => ({
-        objectId: expense.id,
-        name: expense.get("name"),
-        description: expense.get("description"),
-        price: expense.get("price"),
-        createdAt: expense.get("createdAt"),
-      }));
-      setExpenses(expenses);
-      console.log("Expenses fetched successfully.");
-    }).catch((error) => {
-      console.error("Error while fetching expenses:", error);
-    });
+    console.log("TODO: fetchExpenses()");
   }
 
   const fetchStatistics = () => {
-    parse.Cloud.run("getStatistics").then((statistics) => {
-      setStatistics(statistics);
-      console.log("Statistics fetched successfully.");
-    }).catch((error) => {
-      console.error("Error while fetching statistics:", error);
-    });
+    console.log("TODO: fetchStatistics()");
   }
 
   useEffect(() => {
