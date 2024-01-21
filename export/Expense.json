@@ -1,0 +1,85 @@
+{
+"results" : [
+
+  {
+    "objectId": "qpcsHPlHDa",
+    "name": "Apples",
+    "price": 4,
+    "description": "Gala apples 1kg",
+    "createdAt": "2024-01-21T19:27:40.058Z",
+    "updatedAt": "2024-01-21T19:27:40.058Z"
+  },
+  {
+    "objectId": "kqi8TuCPc9",
+    "name": "Chicken",
+    "price": 5.5,
+    "description": "Chicken breasts 1kg",
+    "createdAt": "2024-01-21T19:27:40.058Z",
+    "updatedAt": "2024-01-21T19:27:40.058Z"
+  },
+  {
+    "objectId": "WCqpMgfb1I",
+    "name": "Bananas",
+    "price": 0.85,
+    "description": "Banana 250g",
+    "createdAt": "2024-01-21T19:27:40.058Z",
+    "updatedAt": "2024-01-21T19:27:40.058Z"
+  },
+  {
+    "objectId": "OYDMCehVcR",
+    "name": "Bread",
+    "price": 2.5,
+    "description": "Whole grain bread",
+    "createdAt": "2024-01-21T19:27:40.058Z",
+    "updatedAt": "2024-01-21T19:27:40.058Z"
+  },
+  {
+    "objectId": "5reuNARXJu",
+    "name": "Tomatoes",
+    "price": 1,
+    "description": "Cherry tomatoes 500g",
+    "createdAt": "2024-01-21T19:27:40.058Z",
+    "updatedAt": "2024-01-21T19:27:40.058Z"
+  },
+  {
+    "objectId": "8myA3OViq3",
+    "name": "Cheese",
+    "price": 2.8,
+    "description": "Cheddar cheese 200g",
+    "createdAt": "2024-01-21T19:27:40.058Z",
+    "updatedAt": "2024-01-21T19:27:40.058Z"
+  },
+  {
+    "objectId": "zFatWUXS30",
+    "name": "Eggs",
+    "price": 3,
+    "description": "A dozen of eggs",
+    "createdAt": "2024-01-21T19:27:40.058Z",
+    "updatedAt": "2024-01-21T19:27:40.058Z"
+  },
+  {
+    "objectId": "MOOILbNJu0",
+    "name": "Milk",
+    "price": 1.2,
+    "description": "1L of whole milk",
+    "createdAt": "2024-01-21T19:27:40.058Z",
+    "updatedAt": "2024-01-21T19:27:40.058Z"
+  },
+  {
+    "objectId": "fWEeqPEAL9",
+    "name": "Potatoes",
+    "price": 2,
+    "description": "Potatoes 1kg",
+    "createdAt": "2024-01-21T19:27:40.058Z",
+    "updatedAt": "2024-01-21T19:27:40.058Z"
+  },
+  {
+    "objectId": "1GZCQmfTl6",
+    "name": "Fish",
+    "price": 6.7,
+    "description": "Salmon fillets 500g",
+    "createdAt": "2024-01-21T19:27:40.058Z",
+    "updatedAt": "2024-01-21T19:27:40.058Z"
+  }
+]
+}
