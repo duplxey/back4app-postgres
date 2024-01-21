@@ -14,18 +14,18 @@ export default function Page() {
   const [price, setPrice] = useState(0);
 
   const onAddClick = () => {
-    const Item = parse.Object.extend("Item");
-    const item = new Item();
+    const Expense = parse.Object.extend("Expense");
+    const expense = new Expense();
 
-    item.set("name", name);
-    item.set("description", description);
-    item.set("price", parseFloat(price));
+    expense.set("name", name);
+    expense.set("description", description);
+    expense.set("price", parseFloat(price));
 
-    item.save().then((item) => {
-        console.log("Item created successfully with objectId: ", item.id);
+    expense.save().then((expense) => {
+        console.log("Expense created successfully with objectId: ", expense.id);
         router.push("/");
       }, (error) => {
-        console.error("Error while creating Item: ", error);
+        console.error("Error while creating expense: ", error);
       }
     );
   }
@@ -36,36 +36,36 @@ export default function Page() {
 
   return (
     <div className="bg-gray-50 p-6 rounded-lg shadow-md space-y-4">
-      <div className="text-lg font-semibold">Add item</div>
+      <div className="text-lg font-semibold">Add expense</div>
       <div className="space-y-2">
         <label className="block text-sm font-medium text-gray-700 dark:text-gray-400">
-          Item name
+          Expense name
         </label>
         <input
           name="name"
           type="text"
           className="border border-gray-200 dark:border-gray-700 rounded-md w-full p-2"
-          placeholder="Item name"
+          placeholder="Expense name"
           value={name}
           onChange={(event) => setName(event.target.value)}
         />
       </div>
       <div className="space-y-2">
         <label className="block text-sm font-medium text-gray-700 dark:text-gray-400">
-          Item description
+          Expense description
         </label>
         <input
           name="description"
           type="text"
           className="border border-gray-200 dark:border-gray-700 rounded-md w-full p-2 mt-2"
-          placeholder="Item description"
+          placeholder="Expense description"
           value={description}
           onChange={(event) => setDescription(event.target.value)}
         />
       </div>
       <div className="space-y-2">
         <label className="block text-sm font-medium text-gray-700 dark:text-gray-400">
-          Item price (in USD)
+          Expense price (in USD)
         </label>
         <input
           name="price"
@@ -81,7 +81,7 @@ export default function Page() {
           className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded"
           onClick={onAddClick}
         >
-          Add item
+          Add expense
         </button>
         <button
           className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"

@@ -9,28 +9,28 @@ export default function Page() {
   const router = useRouter();
   const parse = useContext(ParseContext);
 
-  const [items, setItems] = useState([]);
+  const [expenses, setExpenses] = useState([]);
   const [statistics, setStatistics] = useState({
-    totalItems: 0,
+    totalExpenses: 0,
     totalSpent: 0,
     totalBudget: 0,
     spentPercentage: 0,
   });
 
-  const fetchItems = () => {
-    const query = new parse.Query("Item");
-    query.find().then((fetchedItems) => {
-      const items = fetchedItems.map(item => ({
-        objectId: item.id,
-        name: item.get("name"),
-        description: item.get("description"),
-        price: item.get("price"),
-        createdAt: item.get("createdAt"),
+  const fetchExpenses = () => {
+    const query = new parse.Query("Expense");
+    query.find().then((fetchedExpenses) => {
+      const expenses = fetchedExpenses.map(expense => ({
+        objectId: expense.id,
+        name: expense.get("name"),
+        description: expense.get("description"),
+        price: expense.get("price"),
+        createdAt: expense.get("createdAt"),
       }));
-      setItems(items);
-      console.log("Items fetched successfully.");
+      setExpenses(expenses);
+      console.log("Expenses fetched successfully.");
     }).catch((error) => {
-      console.error("Error while fetching items:", error);
+      console.error("Error while fetching expenses:", error);
     });
   }
 
@@ -44,7 +44,7 @@ export default function Page() {
   }
 
   useEffect(() => {
-    fetchItems();
+    fetchExpenses();
     fetchStatistics();
   }, []);
 
@@ -52,7 +52,7 @@ export default function Page() {
     <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
       <div className="w-full basis-3/4">
         <div className="bg-gray-50 p-6 rounded-lg shadow-md space-y-4">
-          <div className="text-lg font-semibold">Items</div>
+          <div className="text-lg font-semibold">Expenses</div>
           <div className="relative overflow-x-auto">
             <table className="w-full text-left rtl:text-right text-gray-500 dark:text-gray-400">
               <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -61,10 +61,10 @@ export default function Page() {
                     #
                   </th>
                   <th scope="col" className="px-6 py-3">
-                    Item name
+                    Expense name
                   </th>
                   <th scope="col" className="px-6 py-3">
-                    Item description
+                    Expense description
                   </th>
                   <th scope="col" className="px-6 py-3">
                     Price
@@ -78,27 +78,27 @@ export default function Page() {
                 </tr>
               </thead>
               <tbody>
-                {items.map((item, index) => (
+                {expenses.map((expense, index) => (
                   <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                      {item.objectId}
+                      {expense.objectId}
                     </th>
                     <td className="px-6 py-4">
-                      {item.name}
+                      {expense.name}
                     </td>
                     <td className="px-6 py-4">
-                      {item.description}
+                      {expense.description}
                     </td>
                     <td className="px-6 py-4">
-                      ${item.price}
+                      ${expense.price}
                     </td>
                     <td className="px-6 py-4">
-                      {item.createdAt.toString()}
+                      {expense.createdAt.toString()}
                     </td>
                     <td className="px-6 py-4 space-x-2">
                       <button
                         className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-                        onClick={() => router.push("/delete/" + item.objectId)}
+                        onClick={() => router.push("/delete/" + expense.objectId)}
                       >
                         Delete
                       </button>
@@ -112,7 +112,7 @@ export default function Page() {
             className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded"
             onClick={() => router.push("/add/")}
           >
-            Add item
+            Add expense
           </button>
         </div>
       </div>
@@ -122,7 +122,7 @@ export default function Page() {
             Statistics
           </div>
           <ul className="mr-2 list-disc list-inside">
-            <li>Total items: <span className="text-gray-500">{statistics.totalItems}</span></li>
+            <li>Total expenses: <span className="text-gray-500">{statistics.totalExpenses}</span></li>
             <li>Total spent: <span className="text-gray-500">${statistics.totalSpent}</span></li>
             <li>Total budget: <span className="text-gray-500">${statistics.totalBudget}</span></li>
           </ul>
